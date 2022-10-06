@@ -3,6 +3,13 @@
 Simple React application which demonstrates the file uplod for isApi.
 
 
+*** PLEASE NOTE THAT VITE JS RUNS OFF http://127.0.0.1:3000 AND CORS IS ONLY ENABLED
+   FOR localhost 3000 on out API.
+   MAKE SURE YOU CHANGE TO localhost:3000 WHEN YOU RUN THE LOCAL SERVER. ***
+
+
+
+
 
 ## Installation 
 
@@ -43,3 +50,5 @@ Simple React application which demonstrates the file uplod for isApi.
 
 
 ## Technical Description
+
+Need to write this.
