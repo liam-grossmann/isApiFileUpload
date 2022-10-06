@@ -5,8 +5,8 @@ export class ApiService {
 
     constructor() { }
 
-    private rootUrl = 'https://localhost:7221/';
-   // private rootUrl = ' https://devapi.is.fun/';
+    // private rootUrl = 'https://localhost:7221/';
+    private rootUrl = ' https://devapi.is.fun/';
     
 
     // fileToSave will be a blob. Must implement blob to allow us to base64encode it.
