@@ -51,4 +51,47 @@ Simple React application which demonstrates the file uplod for isApi.
 
 ## Technical Description
 
-Need to write this.
+Application written using typescript and the latest version of react.
+
+App.tsx is the main react component which prompts you to select a file.
+
+Once you select a file, it is uploaded to the blob storage. You will get back the mediaId created (from the database) and
+the url from the blob storage. Mediapointer will contain the blob storage url.
+
+{
+  "mediaId": 0,
+  "mediaTypeId": 0,
+  "mediaStored": "string",
+  "mediaPointer": "string",
+  "mediaPartnerInstanceId": 0,
+  "createdDate": "2022-10-06T16:52:02.654Z",
+  "updatedDate": "2022-10-06T16:52:02.654Z",
+  "isHidden": true
+}
+
+Unfortunately for reasons I won't go into now, we need to base64 encode the files and send the correct file type to the server.
+
+This is all handled in the ApiService.saveMediaForIsm method.
+
+e.g.
+ inputModel.code = '637F8E73-5169-4D74-BF08-3F0BA481D74F'
+        inputModel.imageBytes = String(base64EncodedString);
+        inputModel.mediaTypeId = fileToSave.name.split('.').pop().toLowerCase(); 
+
+Here we set the ism code, the base64 encoded string for the file, and the file extension
+
+This is then posted to the API. 
+
+At the moment the API only supports the following file types:
+public enum MediaType 
+{
+    png = 1,
+    jpg = 2,
+    tiff =3,
+    bmp = 4,
+    ico = 5,
+    pdf = 6,
+    txt = 7
+}
+
+I'll have to do a lot more testing to complete this but the basic API is working.
