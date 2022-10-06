@@ -16,7 +16,15 @@ export class ApiService {
         const toBase64 = (file: Blob) => new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
+            reader.onload = () => {
+                let encoded = reader.result?.toString().replace(/^data:(.*,)?/, '');
+                if (encoded != null) {
+                    if ((encoded.length % 4) > 0) {
+                        encoded += '='.repeat(4 - (encoded.length % 4));
+                    }
+                }
+                resolve(encoded);
+            };
             reader.onerror = error => reject(error);
         });
         
@@ -28,7 +36,7 @@ export class ApiService {
         let inputModel = new SaveMediaForIsmInputModel();
         inputModel.code = '637F8E73-5169-4D74-BF08-3F0BA481D74F'
         inputModel.imageBytes = String(base64EncodedString);
-        inputModel.mediaTypeId = 'png';
+        inputModel.mediaTypeId = fileToSave.name.split('.').pop().toLowerCase(); 
 
         try {
             let res = await fetch(url, {
