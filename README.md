@@ -60,7 +60,7 @@ the url from the blob storage. Mediapointer will contain the blob storage url.
 
 {
   "mediaId": 0,
-  "mediaTypeId": 0,
+  "mediaType": string,
   "mediaStored": "string",
   "mediaPointer": "string",
   "mediaPartnerInstanceId": 0,
@@ -71,27 +71,17 @@ the url from the blob storage. Mediapointer will contain the blob storage url.
 
 Unfortunately for reasons I won't go into now, we need to base64 encode the files and send the correct file type to the server.
 
-This is all handled in the ApiService.saveMediaForIsm method.
+This is all handled in the ApiService.saveMedia method.
 
 e.g.
  inputModel.code = '637F8E73-5169-4D74-BF08-3F0BA481D74F'
+ inputModel.subjectType = 'Ism';
         inputModel.imageBytes = String(base64EncodedString);
-        inputModel.mediaTypeId = fileToSave.name.split('.').pop().toLowerCase(); 
+        inputModel.mediaType = fileToSave.name.split('.').pop().toLowerCase(); 
 
 Here we set the ism code, the base64 encoded string for the file, and the file extension
 
 This is then posted to the API. 
 
-At the moment the API only supports the following file types:
-public enum MediaType 
-{
-    png = 1,
-    jpg = 2,
-    tiff =3,
-    bmp = 4,
-    ico = 5,
-    pdf = 6,
-    txt = 7
-}
 
 I'll have to do a lot more testing to complete this but the basic API is working.

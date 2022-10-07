@@ -1,9 +1,9 @@
-export class SaveMediaForIsmOutputModel {
+export class SaveMediaOutputModel {
 
     constructor(data: any) {
         if (data) {
             this.mediaId = data.mediaId;
-            this.mediaTypeId = data.mediaTypeId;
+            this.mediaType = data.mediaType;
             this.mediaStored = data.mediaStored;
             this.mediaPointer = data.mediaPointer;
             this.mediaPartnerInstanceId = data.mediaPartnerInstanceId;
@@ -14,7 +14,7 @@ export class SaveMediaForIsmOutputModel {
     }
 
     public mediaId?: number;
-    public mediaTypeId?: number;
+    public mediaType?: string;
     public mediaStored?: string;
     public mediaPointer?: string; 
     public mediaPartnerInstanceId?: number;

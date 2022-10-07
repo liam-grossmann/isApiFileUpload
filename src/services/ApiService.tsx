@@ -1,5 +1,5 @@
 import { FileModel } from '../models/FileModel';
-import { SaveMediaForIsmInputModel } from '../models/SaveMediaForIsmInputModel';
+import { SaveMediaInputModel } from '../models/SaveMediaInputModel';
 
 export class ApiService {
 
@@ -10,8 +10,8 @@ export class ApiService {
     
 
     // fileToSave will be a blob. Must implement blob to allow us to base64encode it.
-    async saveMediaForIsm(fileToSave: any) : Promise<any> {
-        let url = this.rootUrl + 'SaveMediaForIsm';
+    async saveMedia(fileToSave: any) : Promise<any> {
+        let url = this.rootUrl + 'SaveMedia';
 
         const toBase64 = (file: Blob) => new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -33,10 +33,11 @@ export class ApiService {
         console.debug(base64EncodedString);
         
 
-        let inputModel = new SaveMediaForIsmInputModel();
+        let inputModel = new SaveMediaInputModel();
         inputModel.code = '637F8E73-5169-4D74-BF08-3F0BA481D74F'
+        inputModel.subjectType = 'Ism';   // change to Concat or Iser 
         inputModel.imageBytes = String(base64EncodedString);
-        inputModel.mediaTypeId = fileToSave.name.split('.').pop().toLowerCase(); 
+        inputModel.mediaType = fileToSave.name.split('.').pop().toLowerCase(); 
 
         try {
             let res = await fetch(url, {

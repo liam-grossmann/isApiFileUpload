@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { FileModel } from './models/FileModel';
 import './services/ApiService';
 import { ApiService } from './services/ApiService';
-import { SaveMediaForIsmOutputModel } from './models/SaveMediaForIsmOutputModel';
+import { SaveMediaOutputModel } from './models/SaveMediaOutputModel';
 
 function App() {
   const [selectedBlob, setSelectedBlob] = useState();
   const [selectedFile, setSelectedFile] = useState(new FileModel(null));
   const [isFilePicked, setIsFilePicked] = useState(false);
-  const [apiResults, setApiResults] = useState(new SaveMediaForIsmOutputModel(null));
+  const [apiResults, setApiResults] = useState(new SaveMediaOutputModel(null));
   
   let apiService = new ApiService();
 
@@ -22,11 +22,11 @@ function App() {
 
   // Handler when user selects to upload a file
   const handleSubmission = async () => {
-    let result = await apiService.saveMediaForIsm(selectedFile);
+    let result = await apiService.saveMedia(selectedFile);
     console.debug('Save media for ism was called');
     console.debug(result);
-    let saveMediaForIsmOutputModel = new SaveMediaForIsmOutputModel(result);
-    setApiResults(() => saveMediaForIsmOutputModel);
+    let saveMediaOutputModel = new SaveMediaOutputModel(result);
+    setApiResults(() => saveMediaOutputModel);
   };
   
  
