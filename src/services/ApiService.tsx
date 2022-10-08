@@ -34,7 +34,7 @@ export class ApiService {
         
 
         let inputModel = new SaveMediaInputModel();
-        inputModel.code = '637F8E73-5169-4D74-BF08-3F0BA481D74F'
+        inputModel.code = 'B1CC317D-20E6-4E37-A801-1CCE2ED7611D' // code for ism 'China is TikTok'
         inputModel.subjectType = 'Ism';   // change to Concat or Iser 
         inputModel.imageBytes = String(base64EncodedString);
         inputModel.mediaType = fileToSave.name.split('.').pop().toLowerCase(); 

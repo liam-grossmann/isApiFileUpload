@@ -49,6 +49,7 @@ function App() {
 
       <div></div>
       <div><a href={apiResults.mediaPointer}>{apiResults.mediaPointer}</a></div>
+      <div><img src={apiResults.mediaPointer}></img></div>
 		</div>
 	)
 }
